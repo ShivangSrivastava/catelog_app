@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:catelog_app/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -8,12 +10,16 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Catelog App'),
+        title: Text(
+          'Catalog App',
+        ),
       ),
-      body: const Center(
-        child: Text('Hello World Day 2'),
+      body: Center(
+        child: Container(
+          child: Text('Hello World Day 2'),
+        ),
       ),
-      drawer: const MyDrawer(),
+      drawer: MyDrawer(),
     );
   }
 }
