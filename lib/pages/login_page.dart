@@ -5,20 +5,66 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Login"),
-      ),
-      body: const Center(
-        child: Text(
-          "Login page",
-          style: TextStyle(
-            fontSize: 20,
-            color: Colors.blue,
-            fontWeight: FontWeight.bold,
+    return Material(
+      color: Colors.white,
+      child: Column(
+        children: [
+          Image.asset(
+            "assets/images/login_image.png",
+            fit: BoxFit.cover,
           ),
-
-        ),
+          const SizedBox(
+            height: 20,
+          ),
+          const Text(
+            "Welcome",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 16,
+              horizontal: 32,
+            ),
+            child: Column(
+              children: [
+                TextFormField(
+                  decoration: const InputDecoration(
+                    hintText: "Enter username",
+                    label: Text(
+                      'Username',
+                    ),
+                  ),
+                ),
+                TextFormField(
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    hintText: "Enter password",
+                    label: Text(
+                      'Password',
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    print("Clicked!");
+                  },
+                  child: Text(
+                    "Login",
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
