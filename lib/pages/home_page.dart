@@ -1,5 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'dart:convert';
 
@@ -8,8 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:catelog_app/models/catalog.dart';
-import 'package:catelog_app/widgets/drawer.dart';
-import 'package:catelog_app/widgets/item_widgets.dart';
 import 'package:catelog_app/widgets/themes.dart';
 
 class HomePage extends StatefulWidget {
@@ -47,10 +43,10 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CatalogHeader(),
+              const CatalogHeader(),
               (CatalogModel.items.isNotEmpty)
-                  ? CatalogList().expand()
-                  : Center(
+                  ? const CatalogList().expand()
+                  : const Center(
                       child: CircularProgressIndicator(),
                     )
             ],
@@ -125,7 +121,7 @@ class CatalogItem extends StatelessWidget {
                       MyTheme.darkBluishColor,
                     ),
                     shape: MaterialStateProperty.all(
-                      StadiumBorder(),
+                      const StadiumBorder(),
                     ),
                   ),
                   child: "Buy".text.make(),
