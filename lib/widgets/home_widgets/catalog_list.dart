@@ -44,8 +44,8 @@ class CatalogItem extends StatelessWidget {
         child: Row(
       children: [
         Hero(
-          child: CatalogImage(image: catalog.image),
           tag: Key(catalog.id.toString()),
+          child: CatalogImage(image: catalog.image),
         ),
         Expanded(
             child: Column(
@@ -70,7 +70,7 @@ class CatalogItem extends StatelessWidget {
                       const StadiumBorder(),
                     ),
                   ),
-                  child: "Buy".text.make(),
+                  child: "Add to cart".text.make(),
                 )
               ],
             ).pOnly(right: 8),

@@ -1,4 +1,5 @@
 import 'package:catelog_app/widgets/themes.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:catelog_app/models/catalog.dart';
@@ -15,7 +16,7 @@ class HomeDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyTheme.creamColor,
-      appBar: AppBar(),
+      appBar: AppBar(backgroundColor: Colors.transparent),
       bottomNavigationBar: Container(
         color: Colors.white,
         child: ButtonBar(
@@ -33,8 +34,8 @@ class HomeDetailPage extends StatelessWidget {
                   const StadiumBorder(),
                 ),
               ),
-              child: "Buy".text.make(),
-            ).wh(100, 50)
+              child: "Add to cart".text.make(),
+            ).wh(120, 50)
           ],
         ).pOnly(right: 8).p32(),
       ),
@@ -56,10 +57,15 @@ class HomeDetailPage extends StatelessWidget {
                 color: Colors.white,
                 width: context.screenWidth,
                 child: Column(children: [
-                  catalog.name.text.xl4.bold
+                  catalog.name.text.xl3.bold
                       .color(MyTheme.darkBluishColor)
                       .make(),
                   catalog.desc.text.textStyle(context.captionStyle).xl.make(),
+                  "Diam vero rebum vero diam consetetur duo et labore duo dolor. Eos takimata sit dolor sanctus magna est stet amet vero, eos "
+                      .text
+                      .textStyle(context.captionStyle)
+                      .make()
+                      .p16()
                 ]).py64(),
               ),
             ),
