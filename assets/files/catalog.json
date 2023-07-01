@@ -42,14 +42,6 @@
     },
     {
       "id": 6,
-      "name": "Sony PlayStation 5",
-      "desc": "Sony PlayStation 5 console",
-      "price": 499,
-      "color": "#000000",
-      "image": "https://i.dummyjson.com/data/products/6/thumbnail.jpg"
-    },
-    {
-      "id": 7,
       "name": "Xbox Series X",
       "desc": "Microsoft Xbox Series X console",
       "price": 499,
@@ -57,7 +49,7 @@
       "image": "https://i.dummyjson.com/data/products/7/thumbnail.jpg"
     },
     {
-      "id": 8,
+      "id": 7,
       "name": "Nintendo Switch OLED",
       "desc": "Nintendo Switch OLED console",
       "price": 349,

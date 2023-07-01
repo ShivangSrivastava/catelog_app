@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:catelog_app/pages/home_page.dart';
 import 'package:catelog_app/pages/login_page.dart';
 import 'package:catelog_app/utils/routes.dart';
@@ -17,11 +15,11 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.light,
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
-      initialRoute: '/home',
+      initialRoute: '/',
       routes: {
-        '/': (context) => LoginPage(),
-        MyRoutes.homeRoute: (context) => HomePage(),
-        MyRoutes.loginRoute: (context) => LoginPage(),
+        '/': (context) => const LoginPage(),
+        MyRoutes.homeRoute: (context) => const HomePage(),
+        MyRoutes.loginRoute: (context) => const LoginPage(),
       },
       debugShowCheckedModeBanner: false,
     );
