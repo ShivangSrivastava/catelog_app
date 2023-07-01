@@ -1,5 +1,3 @@
-import 'package:catelog_app/widgets/themes.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:catelog_app/models/catalog.dart';
@@ -15,10 +13,10 @@ class HomeDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyTheme.creamColor,
+      backgroundColor: context.theme.canvasColor,
       appBar: AppBar(backgroundColor: Colors.transparent),
       bottomNavigationBar: Container(
-        color: Colors.white,
+        color: context.cardColor,
         child: ButtonBar(
           alignment: MainAxisAlignment.spaceBetween,
           buttonPadding: Vx.m0,
@@ -28,8 +26,9 @@ class HomeDetailPage extends StatelessWidget {
               onPressed: () {},
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(
-                  MyTheme.darkBluishColor,
-                ),
+                    context.theme.colorScheme.secondary),
+                foregroundColor: MaterialStateProperty.all(
+                    context.theme.textTheme.titleMedium?.color),
                 shape: MaterialStateProperty.all(
                   const StadiumBorder(),
                 ),
@@ -54,19 +53,21 @@ class HomeDetailPage extends StatelessWidget {
               arcType: VxArcType.convey,
               edge: VxEdge.top,
               child: Container(
-                color: Colors.white,
+                color: context.cardColor,
                 width: context.screenWidth,
-                child: Column(children: [
-                  catalog.name.text.xl3.bold
-                      .color(MyTheme.darkBluishColor)
-                      .make(),
-                  catalog.desc.text.textStyle(context.captionStyle).xl.make(),
-                  "Diam vero rebum vero diam consetetur duo et labore duo dolor. Eos takimata sit dolor sanctus magna est stet amet vero, eos "
-                      .text
-                      .textStyle(context.captionStyle)
-                      .make()
-                      .p16()
-                ]).py64(),
+                child: Column(
+                  children: [
+                    catalog.name.text.xl3.bold
+                        .color(context.theme.colorScheme.secondary)
+                        .make(),
+                    catalog.desc.text.textStyle(context.captionStyle).xl.make(),
+                    "Diam vero rebum vero diam consetetur duo et labore duo dolor. Eos takimata sit dolor sanctus magna est stet amet vero, eos "
+                        .text
+                        .textStyle(context.captionStyle)
+                        .make()
+                        .p16()
+                  ],
+                ).py64(),
               ),
             ),
           )
