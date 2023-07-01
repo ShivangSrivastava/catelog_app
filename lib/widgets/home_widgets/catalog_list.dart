@@ -1,8 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:catelog_app/widgets/home_widgets/add_to_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:catelog_app/models/cart.dart';
 import 'package:catelog_app/models/catalog.dart';
 import 'package:catelog_app/pages/home_detail_page.dart';
 import 'package:catelog_app/widgets/home_widgets/catalog_image.dart';
@@ -73,56 +72,5 @@ class CatalogItem extends StatelessWidget {
         ))
       ],
     )).color(context.cardColor).roundedLg.make().py16();
-  }
-}
-
-class AddToCart extends StatefulWidget {
-  final int id;
-  const AddToCart({
-    Key? key,
-    required this.id,
-  }) : super(key: key);
-
-  @override
-  State<AddToCart> createState() => _AddToCartState();
-}
-
-class _AddToCartState extends State<AddToCart> {
-  final catalog = CatalogModel();
-  final cart = CartModel();
-  bool isAddToCart = false;
-  // check id is in the cart if yes then add to cart will true
-  // if not then add to cart will false
-  @override
-  void initState() {
-    super.initState();
-    isAddToCart = cart.isItemInCart(widget.id);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        isAddToCart = !isAddToCart;
-
-        cart.catalog = catalog;
-        if (isAddToCart) {
-          cart.addItem(catalog.getItemById(widget.id));
-        } else {
-          cart.removeItem(catalog.getItemById(widget.id));
-        }
-        setState(() {});
-      },
-      style: ButtonStyle(
-        backgroundColor:
-            MaterialStateProperty.all(context.theme.colorScheme.secondary),
-        foregroundColor: MaterialStateProperty.all(
-            context.theme.textTheme.titleMedium?.color),
-        shape: MaterialStateProperty.all(
-          const StadiumBorder(),
-        ),
-      ),
-      child: (isAddToCart) ? const Icon(Icons.done) : "Add to cart".text.make(),
-    );
   }
 }

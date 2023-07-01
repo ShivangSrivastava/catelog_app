@@ -97,16 +97,21 @@ class _CartList extends StatefulWidget {
 class _CartListState extends State<_CartList> {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: widget.cart.items.length,
-      itemBuilder: (context, index) => ListTile(
-        leading: const Icon(Icons.done),
-        trailing: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.remove_circle_outline),
-        ),
-        title: widget.cart.items[index].name.text.make(),
-      ),
-    );
+    return widget.cart.items.isEmpty
+        ? "Nothing to show".text.xl2.make().centered()
+        : ListView.builder(
+            itemCount: widget.cart.items.length,
+            itemBuilder: (context, index) => ListTile(
+              leading: const Icon(Icons.done),
+              trailing: IconButton(
+                onPressed: () {
+                  widget.cart.removeItem(widget.cart.items[index]);
+                  setState(() {});
+                },
+                icon: const Icon(Icons.remove_circle_outline),
+              ),
+              title: widget.cart.items[index].name.text.make(),
+            ),
+          );
   }
 }
