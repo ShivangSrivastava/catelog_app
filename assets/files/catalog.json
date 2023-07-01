@@ -1,0 +1,68 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "iPhone 12 Pro",
+      "desc": "Apple iPhone 12th generation",
+      "price": 999,
+      "color": "#33505a",
+      "image": "https://i.dummyjson.com/data/products/1/thumbnail.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Samsung Galaxy S22 Ultra",
+      "desc": "Samsung Galaxy S22 Ultra smartphone",
+      "price": 1199,
+      "color": "#ffffff",
+      "image": "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+    },
+    {
+      "id": 3,
+      "name": "MacBook Pro 14",
+      "desc": "Apple MacBook Pro 14-inch laptop",
+      "price": 1999,
+      "color": "#000000",
+      "image": "https://i.dummyjson.com/data/products/3/thumbnail.jpg"
+    },
+    {
+      "id": 4,
+      "name": "AirPods Pro",
+      "desc": "Apple AirPods Pro wireless earbuds",
+      "price": 249,
+      "color": "#000000",
+      "image": "https://i.dummyjson.com/data/products/4/thumbnail.jpg"
+    },
+    {
+      "id": 5,
+      "name": "iPad Pro 12.9",
+      "desc": "Apple iPad Pro 12.9-inch tablet",
+      "price": 1099,
+      "color": "#ffffff",
+      "image": "https://i.dummyjson.com/data/products/5/thumbnail.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Sony PlayStation 5",
+      "desc": "Sony PlayStation 5 console",
+      "price": 499,
+      "color": "#000000",
+      "image": "https://i.dummyjson.com/data/products/6/thumbnail.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Xbox Series X",
+      "desc": "Microsoft Xbox Series X console",
+      "price": 499,
+      "color": "#000000",
+      "image": "https://i.dummyjson.com/data/products/7/thumbnail.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Nintendo Switch OLED",
+      "desc": "Nintendo Switch OLED console",
+      "price": 349,
+      "color": "#ffffff",
+      "image": "https://i.dummyjson.com/data/products/8/thumbnail.jpg"
+    }
+  ]
+}
