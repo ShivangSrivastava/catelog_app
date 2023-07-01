@@ -1,12 +1,14 @@
 import 'dart:convert';
 
+import 'package:catelog_app/core/store.dart';
+import 'package:catelog_app/models/cart.dart';
 import 'package:catelog_app/utils/routes.dart';
 import 'package:catelog_app/widgets/home_widgets/catalog_header.dart';
 import 'package:catelog_app/widgets/home_widgets/catalog_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:http/http.dart' as http;
 
 import 'package:catelog_app/models/catalog.dart';
 
@@ -24,9 +26,11 @@ class _HomePageState extends State<HomePage> {
     loadData();
   }
 
+  final url =
+      "https://raw.githubusercontent.com/ShivangSrivastava/catelog_app/day25/assets/files/catalog.json";
   loadData() async {
-    await Future.delayed(const Duration(seconds: 2));
-    var catalogJSON = await rootBundle.loadString('assets/files/catalog.json');
+    http.Response response = await http.get(Uri.parse(url));
+    var catalogJSON = response.body;
     var decodedData = jsonDecode(catalogJSON);
     var productsData = decodedData["products"];
     CatalogModel.items = List.from(productsData)
@@ -37,17 +41,27 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final cart = (VxState.store as MyStore).cartModel;
+
     return Scaffold(
       backgroundColor: context.canvasColor,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, MyRoutes.cartRoute);
+      floatingActionButton: VxConsumer(
+        mutations: const {AddMutation, RemoveMutation},
+        builder: (context, store, status) {
+          return FloatingActionButton(
+            onPressed: () {
+              Navigator.pushNamed(context, MyRoutes.cartRoute);
+            },
+            backgroundColor: context.theme.colorScheme.secondary,
+            child: const Icon(
+              CupertinoIcons.cart,
+              color: Colors.white,
+            ),
+          ).badge(
+            count: cart.items.length,
+            size: 20,
+          );
         },
-        backgroundColor: context.theme.colorScheme.secondary,
-        child: const Icon(
-          CupertinoIcons.cart,
-          color: Colors.white,
-        ),
       ),
       body: SafeArea(
         child: Container(
