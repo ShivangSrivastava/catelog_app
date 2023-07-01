@@ -1,18 +1,12 @@
 import 'dart:convert';
 
 class CatalogModel {
-  static final CatalogModel _instance = CatalogModel._internal();
-  CatalogModel._internal();
-  factory CatalogModel() => _instance;
-
   static List<Item> items = [];
 
-// get item by id
   Item getItemById(int id) {
     return items.firstWhere((item) => item.id == id);
   }
 
-  // get item by position
   Item getItemByPosition(int position) {
     return items[position];
   }

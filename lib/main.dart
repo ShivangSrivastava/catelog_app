@@ -1,11 +1,13 @@
+import 'package:catelog_app/core/store.dart';
 import 'package:catelog_app/pages/cart_page.dart';
 import 'package:catelog_app/pages/home_page.dart';
 import 'package:catelog_app/pages/login_page.dart';
 import 'package:catelog_app/utils/routes.dart';
 import 'package:catelog_app/widgets/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(VxState(store: MyStore(), child: const MyApp()));
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => const LoginPage(),
         MyRoutes.homeRoute: (context) => const HomePage(),
         MyRoutes.loginRoute: (context) => const LoginPage(),
-        MyRoutes.cartRoute: (context) => const CartPage(),
+        MyRoutes.cartRoute: (context) => CartPage(),
       },
       debugShowCheckedModeBanner: false,
     );

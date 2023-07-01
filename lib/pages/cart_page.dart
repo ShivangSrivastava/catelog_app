@@ -5,17 +5,12 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:catelog_app/models/cart.dart';
 import 'package:catelog_app/models/catalog.dart';
 
-class CartPage extends StatefulWidget {
-  const CartPage({super.key});
-
-  @override
-  State<CartPage> createState() => _CartPageState();
-}
-
-class _CartPageState extends State<CartPage> {
+class CartPage extends StatelessWidget {
   final cart = CartModel();
 
   final catalog = CatalogModel();
+
+  CartPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +33,7 @@ class _CartPageState extends State<CartPage> {
   }
 }
 
-class _CartTotal extends StatefulWidget {
+class _CartTotal extends StatelessWidget {
   final CartModel cart;
   const _CartTotal({
     Key? key,
@@ -46,18 +41,13 @@ class _CartTotal extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<_CartTotal> createState() => _CartTotalState();
-}
-
-class _CartTotalState extends State<_CartTotal> {
-  @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 150,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          "\$${widget.cart.totalPrice}"
+          "\$${cart.totalPrice}"
               .text
               .xl5
               .color(context.theme.colorScheme.secondary)
@@ -82,7 +72,7 @@ class _CartTotalState extends State<_CartTotal> {
   }
 }
 
-class _CartList extends StatefulWidget {
+class _CartList extends StatelessWidget {
   final CartModel cart;
 
   const _CartList({
@@ -91,26 +81,20 @@ class _CartList extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<_CartList> createState() => _CartListState();
-}
-
-class _CartListState extends State<_CartList> {
-  @override
   Widget build(BuildContext context) {
-    return widget.cart.items.isEmpty
+    return cart.items.isEmpty
         ? "Nothing to show".text.xl2.make().centered()
         : ListView.builder(
-            itemCount: widget.cart.items.length,
+            itemCount: cart.items.length,
             itemBuilder: (context, index) => ListTile(
               leading: const Icon(Icons.done),
               trailing: IconButton(
                 onPressed: () {
-                  widget.cart.removeItem(widget.cart.items[index]);
-                  setState(() {});
+                  cart.removeItem(cart.items[index]);
                 },
                 icon: const Icon(Icons.remove_circle_outline),
               ),
-              title: widget.cart.items[index].name.text.make(),
+              title: cart.items[index].name.text.make(),
             ),
           );
   }
