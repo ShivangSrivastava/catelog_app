@@ -1,8 +1,10 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:velocity_x/velocity_x.dart';
+
+import 'package:catelog_app/core/store.dart';
 import 'package:catelog_app/models/catalog.dart';
 
 class CartModel {
-
-
   late CatalogModel catalog;
 
   final List<int> _itemIDs = [];
@@ -23,5 +25,18 @@ class CartModel {
 
   bool isItemInCart(int id) {
     return _itemIDs.contains(id);
+  }
+}
+
+class AddMutation extends VxMutation<MyStore> {
+  final Item item;
+  AddMutation({
+    required this.item,
+  });
+  
+  @override
+  void perform(){
+    store?.cartModel._itemIDs.add(item.id);
+
   }
 }

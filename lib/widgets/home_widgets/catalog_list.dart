@@ -64,7 +64,7 @@ class CatalogItem extends StatelessWidget {
               children: [
                 "\$${catalog.price}".text.bold.xl.make(),
                 AddToCart(
-                  id: catalog.id,
+                  catalog: catalog,
                 ),
               ],
             ).pOnly(right: 8),

@@ -1,12 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:catelog_app/core/store.dart';
+import 'package:catelog_app/models/cart.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:catelog_app/models/cart.dart';
 import 'package:catelog_app/models/catalog.dart';
 
 class CartPage extends StatelessWidget {
-  final cart = CartModel();
+  final cart = (VxState.store as MyStore).cartModel;
 
   final catalog = CatalogModel();
 
@@ -21,25 +22,16 @@ class CartPage extends StatelessWidget {
         title: "Cart".text.make(),
       ),
       body: Column(children: [
-        _CartList(
-          cart: cart,
-        ).p32().expand(),
+        _CartList().p32().expand(),
         const Divider(),
-        _CartTotal(
-          cart: cart,
-        ),
+        _CartTotal(),
       ]),
     );
   }
 }
 
 class _CartTotal extends StatelessWidget {
-  final CartModel cart;
-  const _CartTotal({
-    Key? key,
-    required this.cart,
-  }) : super(key: key);
-
+  final cart = (VxState.store as MyStore).cartModel;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -73,13 +65,7 @@ class _CartTotal extends StatelessWidget {
 }
 
 class _CartList extends StatelessWidget {
-  final CartModel cart;
-
-  const _CartList({
-    Key? key,
-    required this.cart,
-  }) : super(key: key);
-
+  final cart = (VxState.store as MyStore).cartModel;
   @override
   Widget build(BuildContext context) {
     return cart.items.isEmpty

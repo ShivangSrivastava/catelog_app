@@ -3,33 +3,27 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import 'package:catelog_app/core/store.dart';
 import 'package:catelog_app/models/cart.dart';
 import 'package:catelog_app/models/catalog.dart';
 
 class AddToCart extends StatelessWidget {
-  final int id;
+  final Item catalog;
 
-  AddToCart({
+  const AddToCart({
     Key? key,
-    required this.id,
+    required this.catalog,
   }) : super(key: key);
-  final _catalog = CatalogModel();
-
-  final _cart = CartModel();
 
   @override
   Widget build(BuildContext context) {
-    bool isAddToCart = _cart.isItemInCart(id);
+    VxState.watch(context, on: [AddMutation]);
+    final cart = (VxState.store as MyStore).cartModel;
+    bool isInCart = cart.items.contains(catalog);
     return ElevatedButton(
       onPressed: () {
-        _cart.catalog = _catalog;
-
-        isAddToCart = !isAddToCart;
-
-        if (isAddToCart) {
-          _cart.addItem(_catalog.getItemById(id));
-        } else {
-          _cart.removeItem(_catalog.getItemById(id));
+        if (!isInCart) {
+          AddMutation(item: catalog);
         }
       },
       style: ButtonStyle(
@@ -41,7 +35,7 @@ class AddToCart extends StatelessWidget {
           const StadiumBorder(),
         ),
       ),
-      child: (isAddToCart)
+      child: (isInCart)
           ? const Icon(Icons.done)
           : const Icon(CupertinoIcons.cart_badge_plus),
     );

@@ -24,7 +24,7 @@ class HomeDetailPage extends StatelessWidget {
           children: [
             "\$${catalog.price}".text.bold.xl4.red800.make(),
             AddToCart(
-              id: catalog.id,
+              catalog: catalog,
             )
           ],
         ).pOnly(right: 8).p32(),
