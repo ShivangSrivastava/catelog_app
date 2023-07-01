@@ -4,18 +4,18 @@ class CatalogModel {
   static List<Item> items = [];
 
 // get item by id
-  static Item getItemById(int id) {
+   Item getItemById(int id) {
     return items.firstWhere((item) => item.id == id);
   }
 
   // get item by position
-  static Item getItemByPosition(int position) {
+   Item getItemByPosition(int position) {
     return items[position];
   }
 }
 
 class Item {
-  final num id;
+  final int id;
   final String name;
   final String desc;
   final num price;
@@ -31,7 +31,7 @@ class Item {
       required this.image});
 
   Item copyWith({
-    num? id,
+    int? id,
     String? name,
     String? desc,
     num? price,
@@ -61,7 +61,7 @@ class Item {
 
   factory Item.fromMap(Map<String, dynamic> map) {
     return Item(
-      id: map['id'] as num,
+      id: map['id'] as int,
       name: map['name'] as String,
       desc: map['desc'] as String,
       price: map['price'] as num,

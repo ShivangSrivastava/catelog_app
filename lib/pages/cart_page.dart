@@ -27,7 +27,7 @@ class _CartTotal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200,
+      height: 150,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -37,7 +37,10 @@ class _CartTotal extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: context.theme.colorScheme.secondary,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: "Buying not supported yet".text.make()));
+                  },
                   child: "Buy"
                       .text
                       .color(context.theme.textTheme.bodyMedium?.color)
