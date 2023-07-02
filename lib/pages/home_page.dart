@@ -44,45 +44,47 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final cart = (VxState.store as MyStore).cartModel;
 
-    return Stack(
-      children: [
-        Scaffold(
-          backgroundColor: context.canvasColor,
-          floatingActionButton: VxConsumer(
-            mutations: const {AddMutation, RemoveMutation},
-            builder: (context, store, status) {
-              return FloatingActionButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, MyRoutes.cartRoute);
-                },
-                backgroundColor: context.theme.colorScheme.secondary,
-                child: const Icon(
-                  CupertinoIcons.cart,
-                  color: Colors.white,
+    return SafeArea(
+      child: Stack(
+        children: [
+          Scaffold(
+            backgroundColor: context.canvasColor,
+            floatingActionButton: VxConsumer(
+              mutations: const {AddMutation, RemoveMutation},
+              builder: (context, store, status) {
+                return FloatingActionButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, MyRoutes.cartRoute);
+                  },
+                  backgroundColor: context.theme.colorScheme.secondary,
+                  child: const Icon(
+                    CupertinoIcons.cart,
+                    color: Colors.white,
+                  ),
+                ).badge(
+                  count: cart.items.length,
+                  size: 20,
+                );
+              },
+            ),
+            body: SafeArea(
+              child: Container(
+                padding: Vx.m32,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const CatalogHeader(),
+                    (CatalogModel.items.isNotEmpty)
+                        ? const CatalogList().py16().expand()
+                        : const CircularProgressIndicator().centered().expand()
+                  ],
                 ),
-              ).badge(
-                count: cart.items.length,
-                size: 20,
-              );
-            },
-          ),
-          body: SafeArea(
-            child: Container(
-              padding: Vx.m32,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const CatalogHeader(),
-                  (CatalogModel.items.isNotEmpty)
-                      ? const CatalogList().py16().expand()
-                      : const CircularProgressIndicator().centered().expand()
-                ],
               ),
             ),
           ),
-        ),
-        const ThemeChanger()
-      ],
+          const ThemeChanger()
+        ],
+      ),
     );
   }
 }

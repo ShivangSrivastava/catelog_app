@@ -16,22 +16,24 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Scaffold(
-          backgroundColor: context.canvasColor,
-          appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            title: "Cart".text.make(),
+    return SafeArea(
+      child: Stack(
+        children: [
+          Scaffold(
+            backgroundColor: context.canvasColor,
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              title: "Cart".text.make(),
+            ),
+            body: Column(children: [
+              _CartList().p32().expand(),
+              const Divider(),
+              _CartTotal(),
+            ]),
           ),
-          body: Column(children: [
-            _CartList().p32().expand(),
-            const Divider(),
-            _CartTotal(),
-          ]),
-        ),
-        const ThemeChanger()
-      ],
+          const ThemeChanger()
+        ],
+      ),
     );
   }
 }
