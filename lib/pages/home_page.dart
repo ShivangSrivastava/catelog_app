@@ -5,6 +5,7 @@ import 'package:catelog_app/models/cart.dart';
 import 'package:catelog_app/utils/routes.dart';
 import 'package:catelog_app/widgets/home_widgets/catalog_header.dart';
 import 'package:catelog_app/widgets/home_widgets/catalog_list.dart';
+import 'package:catelog_app/widgets/theme_changer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -43,40 +44,45 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final cart = (VxState.store as MyStore).cartModel;
 
-    return Scaffold(
-      backgroundColor: context.canvasColor,
-      floatingActionButton: VxConsumer(
-        mutations: const {AddMutation, RemoveMutation},
-        builder: (context, store, status) {
-          return FloatingActionButton(
-            onPressed: () {
-              Navigator.pushNamed(context, MyRoutes.cartRoute);
+    return Stack(
+      children: [
+        Scaffold(
+          backgroundColor: context.canvasColor,
+          floatingActionButton: VxConsumer(
+            mutations: const {AddMutation, RemoveMutation},
+            builder: (context, store, status) {
+              return FloatingActionButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, MyRoutes.cartRoute);
+                },
+                backgroundColor: context.theme.colorScheme.secondary,
+                child: const Icon(
+                  CupertinoIcons.cart,
+                  color: Colors.white,
+                ),
+              ).badge(
+                count: cart.items.length,
+                size: 20,
+              );
             },
-            backgroundColor: context.theme.colorScheme.secondary,
-            child: const Icon(
-              CupertinoIcons.cart,
-              color: Colors.white,
+          ),
+          body: SafeArea(
+            child: Container(
+              padding: Vx.m32,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const CatalogHeader(),
+                  (CatalogModel.items.isNotEmpty)
+                      ? const CatalogList().py16().expand()
+                      : const CircularProgressIndicator().centered().expand()
+                ],
+              ),
             ),
-          ).badge(
-            count: cart.items.length,
-            size: 20,
-          );
-        },
-      ),
-      body: SafeArea(
-        child: Container(
-          padding: Vx.m32,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const CatalogHeader(),
-              (CatalogModel.items.isNotEmpty)
-                  ? const CatalogList().py16().expand()
-                  : const CircularProgressIndicator().centered().expand()
-            ],
           ),
         ),
-      ),
+        const ThemeChanger()
+      ],
     );
   }
 }

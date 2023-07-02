@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:catelog_app/core/store.dart';
 import 'package:catelog_app/models/cart.dart';
+import 'package:catelog_app/widgets/theme_changer.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -15,17 +16,22 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: context.canvasColor,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: "Cart".text.make(),
-      ),
-      body: Column(children: [
-        _CartList().p32().expand(),
-        const Divider(),
-        _CartTotal(),
-      ]),
+    return Stack(
+      children: [
+        Scaffold(
+          backgroundColor: context.canvasColor,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            title: "Cart".text.make(),
+          ),
+          body: Column(children: [
+            _CartList().p32().expand(),
+            const Divider(),
+            _CartTotal(),
+          ]),
+        ),
+        const ThemeChanger()
+      ],
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:catelog_app/core/store.dart';
+import 'package:catelog_app/models/theme.dart';
 import 'package:catelog_app/pages/cart_page.dart';
 import 'package:catelog_app/pages/home_page.dart';
 import 'package:catelog_app/pages/login_page.dart';
@@ -14,11 +15,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    VxState.watch(context, on: [ThemeMutation]);
+
+
     return MaterialApp(
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeManager.getTheme(),
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
-      initialRoute: '/home',
+      initialRoute: '/',
       routes: {
         '/': (context) => const LoginPage(),
         MyRoutes.homeRoute: (context) => const HomePage(),
